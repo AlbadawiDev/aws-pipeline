@@ -1,3 +1,10 @@
+![CI](https://github.com/AlbadawiDev/aws-pipeline/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/badge/license-MIT-informational)
+![AWS](https://img.shields.io/badge/AWS-Serverless-orange)
+
+# aws-pipeline
+Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena (Terraform + Python).
+
 ## Cómo probar (S3 → Lambda → S3 → Athena)
 1. Subir CSV a `s3://daniel-pipeline-aws-2025/raw/ventas.csv`
 2. Lambda genera `s3://daniel-pipeline-aws-2025/curated/ventas.csv`
