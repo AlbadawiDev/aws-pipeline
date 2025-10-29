@@ -22,3 +22,4 @@ Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena
    WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = "\"")
    LOCATION 's3://daniel-pipeline-aws-2025/curated/'
    TBLPROPERTIES ('skip.header.line.count'='1');
+
