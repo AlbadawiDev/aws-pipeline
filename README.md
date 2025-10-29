@@ -25,4 +25,27 @@ Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena
 
    ```
 
-   
+## Consulta ejemplo
+
+```sql
+
+SELECT producto,
+       SUM(CAST(monto AS DOUBLE)) AS total
+FROM tienda.ventas
+WHERE TRY_CAST(monto AS DOUBLE) IS NOT NULL
+GROUP BY producto
+ORDER BY total DESC
+LIMIT 10;
+
+```
+
+## Arquitectura
+
+```sql
+
+flowchart LR
+  A[S3 raw/] -->|ObjectCreated| B[Lambda (Python)]
+  B --> C[S3 curated/]
+  C --> D[Athena (SQL)]
+
+```
