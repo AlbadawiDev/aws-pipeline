@@ -1,4 +1,3 @@
-cat > README.md <<'EOF'
 ![CI](https://github.com/AlbadawiDev/aws-pipeline/actions/workflows/ci.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-MIT-informational)
 ![AWS](https://img.shields.io/badge/AWS-Serverless-orange)
