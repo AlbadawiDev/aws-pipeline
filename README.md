@@ -18,19 +18,3 @@ Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena
    WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = "\"")
    LOCATION 's3://daniel-pipeline-aws-2025/curated/'
    TBLPROPERTIES ('skip.header.line.count'='1');
-
-Consulta ejemplo:
-
-SELECT producto, SUM(CAST(monto AS DOUBLE)) AS total
-FROM tienda.ventas
-WHERE TRY_CAST(monto AS DOUBLE) IS NOT NULL
-GROUP BY producto
-ORDER BY total DESC
-LIMIT 10;
-
-Arquitectura:
-
-flowchart LR
-  A[S3 raw/] -->|ObjectCreated| B[Lambda (Python)]
-  B --> C[S3 curated/]
-  C --> D[Athena (SQL)]
