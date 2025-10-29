@@ -41,11 +41,8 @@ LIMIT 10;
 
 ## Arquitectura
 
-```sql
-
-flowchart LR
-  A[S3 raw/] -->|ObjectCreated| B[Lambda (Python)]
-  B --> C[S3 curated/]
-  C --> D[Athena (SQL)]
-
-```
+```mermaid
+graph LR
+  A["S3 raw/"] -- ObjectCreated --> B["Lambda (Python)"]
+  B --> C["S3 curated/"]
+  C --> D["Athena (SQL)"]
