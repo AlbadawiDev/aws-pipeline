@@ -1,0 +1,12 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+terraform.tfvars
+infra/lambda.zip
+
+# Python
+__pycache__/
+*.pyc
