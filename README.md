@@ -12,7 +12,8 @@ Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena
 1. Subir CSV a `s3://daniel-pipeline-aws-2025/raw/ventas.csv`
 2. Lambda genera `s3://daniel-pipeline-aws-2025/curated/ventas.csv`
 3. Athena (us-east-1):
-```sql
+   
+``sql
 CREATE DATABASE IF NOT EXISTS tienda;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS tienda.ventas (
@@ -28,7 +29,7 @@ TBLPROPERTIES ('skip.header.line.count'='1');
 
 
 ## Consulta ejemplo
-```sql
+``sql
 SELECT producto,
        SUM(CAST(monto AS DOUBLE)) AS total
 FROM tienda.ventas
