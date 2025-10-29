@@ -1,4 +1,4 @@
-cd ~/Portafolio/aws-pipeline  ||  cd /c/Users/Usuario/Portafolio/aws-pipeline
+cd ~/Portafolio/aws-pipeline || cd /c/Users/Usuario/Portafolio/aws-pipeline
 
 cat > README.md <<'EOF'
 ![CI](https://github.com/AlbadawiDev/aws-pipeline/actions/workflows/ci.yml/badge.svg)
@@ -12,8 +12,8 @@ Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena
 1. Subir CSV a `s3://daniel-pipeline-aws-2025/raw/ventas.csv`
 2. Lambda genera `s3://daniel-pipeline-aws-2025/curated/ventas.csv`
 3. Athena (us-east-1):
-   
-``sql
+
+```sql
 CREATE DATABASE IF NOT EXISTS tienda;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS tienda.ventas (
@@ -26,23 +26,3 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = "\"")
 LOCATION 's3://daniel-pipeline-aws-2025/curated/'
 TBLPROPERTIES ('skip.header.line.count'='1');
-
-
-## Consulta ejemplo
-``sql
-SELECT producto,
-       SUM(CAST(monto AS DOUBLE)) AS total
-FROM tienda.ventas
-WHERE TRY_CAST(monto AS DOUBLE) IS NOT NULL
-GROUP BY producto
-ORDER BY total DESC
-LIMIT 10;
-
-
-## Arquitectura
-
- flowchart LR
-  A[S3 raw/] -->|ObjectCreated| B[Lambda (Python)]
-  B --> C[S3 curated/]
-  C --> D[Athena (SQL)]
-
