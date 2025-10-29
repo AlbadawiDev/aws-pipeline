@@ -11,8 +11,12 @@ Pipeline serverless: S3 (raw) → Lambda (transform) → S3 (curated) → Athena
 3. Athena (us-east-1):
    ```sql
    CREATE DATABASE IF NOT EXISTS tienda;
+
    CREATE EXTERNAL TABLE IF NOT EXISTS tienda.ventas (
-     fecha string, producto string, cantidad string, monto string
+     fecha string,
+     producto string,
+     cantidad string,
+     monto string
    )
    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
    WITH SERDEPROPERTIES ("separatorChar" = ",", "quoteChar" = "\"")
