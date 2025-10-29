@@ -53,7 +53,6 @@ graph LR
 ```bash
 cd infra
 terraform destroy -auto-approve
-# (y borra el bucket S3 si no lo destruye por estar con objetos)
 ```
 
 2) “Prerequisitos” al inicio
@@ -66,8 +65,10 @@ terraform destroy -auto-approve
 ```
 
 ## Estructura
+```
 .
 ├─ infra/              # Terraform (S3, Lambda, permisos, notificación)
 ├─ lambda/             # Código Python de la Lambda
 ├─ sample/             # CSV de ejemplo
 └─ .github/workflows/  # CI
+```
