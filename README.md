@@ -46,3 +46,28 @@ graph LR
   A["S3 raw/"] -- ObjectCreated --> B["Lambda (Python)"]
   B --> C["S3 curated/"]
   C --> D["Athena (SQL)"]
+```
+
+## Limpieza
+
+```bash
+cd infra
+terraform destroy -auto-approve
+# (y borra el bucket S3 si no lo destruye por estar con objetos)
+```
+
+2) “Prerequisitos” al inicio
+   
+```md
+## Prerrequisitos
+- Terraform ≥ 1.9
+- AWS CLI v2 con credenciales válidas
+- Región: `us-east-1`
+```
+
+## Estructura
+.
+├─ infra/              # Terraform (S3, Lambda, permisos, notificación)
+├─ lambda/             # Código Python de la Lambda
+├─ sample/             # CSV de ejemplo
+└─ .github/workflows/  # CI
