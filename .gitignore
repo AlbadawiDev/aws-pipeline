@@ -10,3 +10,7 @@ infra/lambda.zip
 # Python
 __pycache__/
 *.pyc
+.venv/
+.env*
+*.log
+.demo/
